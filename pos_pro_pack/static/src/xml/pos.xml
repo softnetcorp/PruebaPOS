@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <ul class="info-list">
+                <t t-if="props.line.fix_product_ids">
+                    <li><em>Fix</em></li>
+                    <t t-foreach="props.line.fix_product_ids" t-as="fixed_product">
+                        <li class="info" style="margin-left: 22px;"><t t-raw="props.line.fixed_product_pack(fixed_product,props.line.quantity,props.line.get_unit().name)"/></li>
+                    </t>
+                </t>
+                <t t-if="props.line.selective_product_ids">
+                    <li><em>Selected</em></li>
+                    <t t-foreach="props.line.selective_product_ids" t-as="selective_product">
+                        <li class="info" style="margin-left: 22px;"><t t-raw="props.line.selected_product_pack(selective_product,props.line.quantity,props.line.get_unit().name)"/></li>
+                    </t>
+                </t>
+            </ul>
+        </xpath>
+    </t>
+
+    <t t-name="SelectiveProductWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-textarea" style="max-width:900px;height:540px">
+                    <header class="title drag-handle">
+                        <t t-esc="props.title" />
+                    </header>
+                    <main class="body">
+                        <div style="height: 240px;overflow: scroll;">
+                            <t t-if="props.product_pack_list">
+                                <t t-if="props.product">
+                                    <div class="base_product"  t-att-data-product-id="props.product.id"  t-att-data-count="props.product.item_limit"/>
+                                </t>
+                                <t t-foreach="props.product_pack_list" t-as="product_pack_list">
+                                    <span t-attf-class="product wv_product {{'wv_product'+product_pack_list.id}} {{product_pack_list.default_selected ? 'dark-border' : ''}}"  t-att-data-product-id="product_pack_list.id" t-att-data-product-qty="product_pack_list.qty" t-on-click="trigger('selective-product', product_pack_list)">
+                                        <div class="product-img">
+                                            <img t-attf-src='/web/image/product.product/{{product_pack_list.product_id[0]}}/image_128' />
+                                        </div>
+                                        <div class="product-name">
+                                            <t t-esc="product_pack_list.product_id[1]"/>
+                                        </div>
+                                    </span>
+                                </t>
+                            </t>
+                        </div>
+                        <div style="height: 137px;overflow: scroll;">
+                            <t t-if="props.fixed_product_list">
+                                <t t-foreach="props.fixed_product_list" t-as="fixed_product_list">
+                                    <span class='product' t-att-data-product-id="fixed_product_list.id" t-att-data-product-qty="fixed_product_list.qty">
+                                        <div class="product-img">
+                                            <img t-attf-src='/web/image/product.product/{{fixed_product_list.product_id[0]}}/image_128' />
+                                        </div>
+                                        <div class="product-name">
+                                            <t t-esc="fixed_product_list.product_id[1]"/>
+                                        </div>
+                                    </span>
+                                </t>
+                            </t>
+                        </div>
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm" t-on-click="confirm">
+                            <t t-esc="props.confirmText" />
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+
+    <t t-name="OrderlineEditPackButton" owl="1">
+        <div class="control-button">
+            <i class="fa fa-tag" />
+            <span> </span>
+            <span> Edit Pack</span>
+        </div>
+    </t>
+
+    <t t-name="ProductItem" owl="1" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-name')]" position="before">
+            <t t-if="props.product.is_pack">
+                <t t-if='env.pos.config.allow_product_pack'>
+                    <span class="price-tag" style="top: 21px;background: green;">
+                       Pack Product
+                    </span>
+                </t>
+            </t>
+        </xpath>
+    </t>
+
+   <!--  <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-order-data')]" position="before">
+            <t t-if="line.fix_product_ids">
+                <li><b>Fix</b></li>
+                <t t-foreach="line.fix_product_ids" t-as="fixed_product">
+                    <li class="info"><t t-raw="line.fixed_product_pack(fixed_product,line.quantity,line.get_unit().name)"/></li>
+                </t>
+            </t>
+            <t t-if="line.selective_product_ids">
+                <li><b>Selected</b></li>
+                <t t-foreach="line.selective_product_ids" t-as="selective_product">
+                    <li class="info"><t t-raw="line.selected_product_pack(selective_product,line.quantity,line.get_unit().name)"/></li>
+                </t>
+            </t>
+        </xpath>
+    </t> -->
+
+
+</templates>

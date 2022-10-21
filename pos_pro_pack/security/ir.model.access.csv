@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+fix_product_pack_id,fix_product_pack,model_fix_product_pack,,1,1,1,1
+selective_product_pack_id,selective_product_pack,model_selective_product_pack,,1,1,1,1
+
