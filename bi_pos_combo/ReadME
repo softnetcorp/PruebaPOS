@@ -1,0 +1,82 @@
+Date 28th April 2021
+version :- 14.0.0.1
+issue solve:-
+	-- Now we can select optional products from the popup and we can add it in the orderline with it's price.
+
+Date 03rd May 2021
+version :- 14.0.0.2
+issue solve:-
+	-- Load optional and required product image in the popup.
+
+version :- 14.0.0.3 (Date: 02/08/2021)
+issue solve:- 
+	-- Update _create_move_from_pos_order_lines method.
+	-- While adding combo product in the picking it is add main product twice solved that issue.
+
+version :- 14.0.0.4 (Date: 12/08/2021)
+issue solve:- 
+	-- Added constrains if required product not set in the combo products
+
+
+version :- 14.0.1.4 (Date: 13/08/2021)
+Added Improvement:- 
+	-- Removed constrains if required product not set in the combo products.
+	-- Added Selection field for the selection of combo price
+		- total of all the combo product
+		- total of main product.
+
+version :- 14.0.1.5 (Date: 17/08/2021)
+issue solve:-
+		-- While changing customer f combo product is in the cart then show warning popup.
+		-- while changing quantity of combo product main product price taken solved it.
+		-- if changed quantity of combo product then update quantity of sub-produts.
+		-- if set discount/qty/price for the combo product then show it in the receipt.
+
+version :- 14.0.1.6 (Date: 18/08/2021)
+issue solve:-	
+		-- update code of extend OrderReceipt screen view.
+
+--------------------------------------------------------------------------------
+
+Date:- 20th dec, 2021
+"version" : "14.0.1.7",
+issue solve:-
+		(Enterprice 14.0)
+		In combo product added in orderLine ,combo product print in order receipt,
+		like all products name show in the order change receipt in thermal print receipt.
+
+
+Date:-7th jan 2022
+"version" : "14.0.1.8"
+"Improvment Points:-"
+		- update OrderLine for add in optional product for old product is
+				auto selected in every time edit in combo product
+
+Date:-11th jan 2022
+"version" : "14.0.1.9"
+"Improvment Points:-"
+		(Enterprice 14.0)
+		- In Pos Resturant click the order button showing the traceback of display_name, solve the issue.
+
+Date:-8th Feb 2022
+"version" : "14.0.1.10"
+"Improvment Points:-"
+		- update OrderLine for add in optional product for old product is
+		auto selected in another product of same product so solved the issue. if we select the same product of
+		multiple combo it is not an auto selected.
+
+Date:-3rd March 2022
+"version" : "14.0.1.11"
+"Improvment Points:-"
+		- Select the Multiple combo and old combo product(Optional Product) auto selected in another combo so solve it
+
+version :- 14.0.2.0 (Date: 10/03/2022)
+issue solve:- 
+		-- When we select any product for the combo product and then again select same product that time optional product is auto selected now it will show auto select when we edit it from the pos order line.
+
+version :- 14.0.2.1 (Date: 14/03/2022)
+issue solve:-
+		-- When We Click on Order button in the restaurant that time get an error solved that.
+
+version :- 14.0.2.2 (Date: 25/07/2022)
+	-- Change tag name odoo from openerp in xml file.
